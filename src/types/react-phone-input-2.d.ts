@@ -21,7 +21,7 @@ declare module 'react-phone-input-2' {
     countryCodeEditable?: boolean;
     enableAreaCodes?: boolean;
     masks?: Record<string, string>;
-    [key: string]: any;
+    [key: string]: string | number | boolean | undefined;
   }
   const PhoneInput: React.FC<PhoneInputProps>;
   export default PhoneInput;
