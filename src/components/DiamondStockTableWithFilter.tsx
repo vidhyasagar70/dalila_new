@@ -272,7 +272,7 @@ export default function DiamondStockTableWithFilter() {
           <button
             onClick={handleRefresh}
             disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 bg-[#050C3A] text-white rounded shadow hover:bg-[#b08830] transition-colors disabled:opacity-60"
+            className="flex items-center gap-2 px-4 py-2 bg-[#050C3A] text-white rounded shadow hover:bg-[#000055] transition-colors disabled:opacity-60"
             title="Refresh Inventory"
           >
             <Image src="/filtersicon/filter-add.png" alt="Refresh" width={18} height={18} className="w-4 h-4" />
