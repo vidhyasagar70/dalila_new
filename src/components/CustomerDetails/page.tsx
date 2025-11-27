@@ -26,8 +26,8 @@ const playFair = Playfair_Display({
 });
 
 // Dynamically import react-phone-input-2 to avoid SSR issues
-import type { CountryData } from "react-phone-input-2";
-const PhoneInput = dynamic(() => import("react-phone-input-2"), { ssr: false }) as unknown as React.ComponentType<any>;
+import type { CountryData, PhoneInputProps } from "react-phone-input-2";
+const PhoneInput = dynamic(() => import("react-phone-input-2"), { ssr: false }) as unknown as React.ComponentType<PhoneInputProps>;
 import "react-phone-input-2/lib/style.css";
 
 // Business types
