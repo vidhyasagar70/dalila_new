@@ -436,21 +436,13 @@ const DiamondDetailView: React.FC<DiamondDetailViewProps> = ({
                     <span className="text-3xl font-bold text-gray-900">
                       {formatCurrency(diamond.NET_VALUE)}
                     </span>
-                    {diamond.RAP_PRICE && (
-                      <span className="text-base text-gray-400 line-through">
-                        {formatCurrency(diamond.RAP_PRICE)}
-                      </span>
-                    )}
+                    
                   </div>
                 </div>
 
                 {/* Basic Information */}
                 <div className="bg-gray-50 p-4 rounded-none flex-1 flex flex-col">
-                  <div className="border-b border-[#e9e2c6] pb-2 mb-2">
-                    <h3 className={`text-3xl md:text-4xl font-medium text-slate-900 mb-2 ${marcellus.className}`}>
-                      Basic Information
-                    </h3>
-                  </div>
+                 
                   <div className="grid grid-cols-2 gap-3 flex-1">
                     <InfoItem
                       label="Shape"
@@ -565,16 +557,16 @@ const DiamondDetailView: React.FC<DiamondDetailViewProps> = ({
                   "Length",
                   diamond.MEASUREMENTS?.split("x")[0]?.trim() || "N/A",
                 ],
-                ["Width", diamond.MEASUREMENTS?.split("x")[1]?.trim() || "N/A"],
-                ["Depth", diamond.MEASUREMENTS?.split("x")[2]?.trim() || "N/A"],
-                ["Ratio", "-"],
+                // ["Width", diamond.MEASUREMENTS?.split("x")[1]?.trim() || "N/A"],
+                // ["Depth", diamond.MEASUREMENTS?.split("x")[2]?.trim() || "N/A"],
+                // ["Ratio", "-"],
                 ["Crown Angle", diamond.CROWN_ANGLE || "N/A"],
                 ["Crown Height", diamond.CROWN_HEIGHT || "N/A"],
                 ["Pav Angle", diamond.PAVILLION_ANGLE || "N/A"],
                 ["Pav Height", diamond.PAVILLION_HEIGHT || "N/A"],
-                ["Girdle", "THN"],
-                ["Culet", "NON"],
-                ["Laser Ins.", "-"],
+                // ["Girdle", "THN"],
+                // ["Culet", "NON"],
+                // ["Laser Ins.", "-"],
               ]}
             />
 
@@ -582,18 +574,18 @@ const DiamondDetailView: React.FC<DiamondDetailViewProps> = ({
             <DetailTable
               title="Inclusion Details"
               data={[
-                ["Center Natts", diamond.CN || "MINOR"],
-                ["Side Natts", diamond.SN || "NONE"],
-                ["Center White", diamond.CW || "VERY SLIGHT"],
-                ["Side White", diamond.SW || "SLIGHT"],
-                ["Table open", "TO-O"],
-                ["Crown open", "CO-O"],
-                ["Pavilion open", "PO-O"],
-                ["Eye Clean", diamond.EY_CLN || "100%"],
-                ["Herat & Arrow", diamond.HA || diamond.H_AND_A || "-"],
-                ["Brilliancy", "EX"],
-                ["Type2 Cert", "-"],
-                ["Country Of Origin", diamond.LOCATION || "-"],
+                ["Center Natts", diamond.CN || "-"],
+                ["Side Natts", diamond.SN || "-"],
+                ["Center White", diamond.CW || "-"],
+                ["Side White", diamond.SW || "-"],
+                // ["Table open", "TO-O"],
+                // ["Crown open", "CO-O"],
+                // ["Pavilion open", "PO-O"],
+                ["Eye Clean", diamond.EY_CLN || "-"],
+                // ["Herat & Arrow", diamond.HA || diamond.H_AND_A || "-"],
+                // ["Brilliancy", "EX"],
+                // ["Type2 Cert", "-"],
+                ["Location", diamond.LOCATION || "-"],
               ]}
             />
           </div>

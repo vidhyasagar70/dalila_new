@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid3x3, List, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { DiamondData } from "@/types/Diamondtable";
@@ -33,6 +33,42 @@ const mavenPro = Maven_Pro({
 });
 
 export default function DiamondStockTableWithFilter() {
+  // Admin check state
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshMessage, setRefreshMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const userStr = localStorage.getItem("user");
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          setIsAdmin(user.role === "ADMIN" || user.role === "SUPER_ADMIN");
+        } catch {
+          setIsAdmin(false);
+        }
+      }
+    }
+  }, []);
+    // Refresh handler
+    const handleRefresh = async () => {
+      setRefreshing(true);
+      setRefreshMessage(null);
+      try {
+        const { diamondApi } = await import("@/lib/api");
+        const response = await diamondApi.refresh();
+        if (response && response.success) {
+          setRefreshMessage("Inventory refresh started successfully.");
+        } else {
+          setRefreshMessage(response?.message || "Failed to refresh inventory.");
+        }
+      } catch (err) {
+        setRefreshMessage("Error refreshing inventory.");
+      } finally {
+        setRefreshing(false);
+      }
+    };
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [selectedColor, setSelectedColor] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -230,6 +266,23 @@ export default function DiamondStockTableWithFilter() {
 
   return (
     <div className="w-full px-4 py-4 bg-[#F5F7FA] mt-30">
+      {/* Admin Refresh Button */}
+      {isAdmin && (
+        <div className="flex items-center mb-4">
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="flex items-center gap-2 px-4 py-2 bg-[#050C3A] text-white rounded shadow hover:bg-[#b08830] transition-colors disabled:opacity-60"
+            title="Refresh Inventory"
+          >
+            <Image src="/filtersicon/filter-add.png" alt="Refresh" width={18} height={18} className="w-4 h-4" />
+            {refreshing ? "Refreshing..." : "Refresh"}
+          </button>
+          {refreshMessage && (
+            <span className="ml-4 text-sm text-green-700">{refreshMessage}</span>
+          )}
+        </div>
+      )}
       {/* TOP ROW: Shapes, Carat, Clarity + Fluor/Color stack */}
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0.5">
         <ShapeFilter
