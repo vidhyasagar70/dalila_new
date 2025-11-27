@@ -16,6 +16,7 @@ export default function HeaderFooterWrapper({
     "/register",
     "/customer-details",
     "/forgot-password",
+    "/verify-otp",
   ];
 
   const hideHeaderFooter = noHeaderFooterRoutes.includes(pathname);

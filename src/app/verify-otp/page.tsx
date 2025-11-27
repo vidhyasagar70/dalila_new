@@ -364,7 +364,7 @@ function OTPVerificationContent() {
               </div>
 
               {/* Login Link */}
-              <div className="mt-6 text-center text-xs text-[#474745]">
+              <div  className="mt-6 text-center text-xs text-white">
                 Already verified?{" "}
                 <a
                   href="#"
